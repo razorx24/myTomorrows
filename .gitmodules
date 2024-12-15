@@ -1,0 +1,3 @@
+[submodule "src/devops-assignment"]
+	path = src/devops-assignment
+	url = https://github.com/myTomorrows/devops-assignment.git
