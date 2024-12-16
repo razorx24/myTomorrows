@@ -1,0 +1,10 @@
+version: '3.4'
+
+services:
+  ec2user:
+    image: ec2user
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 5000:5000
