@@ -1,6 +1,6 @@
 locals {
-  name            = "dev-cluster"
-  cluster_version = "1.31"
+  name            = var.eks_cluster_name
+  cluster_version = var.eks_cluster_version
 }
 
 module "eks" {
