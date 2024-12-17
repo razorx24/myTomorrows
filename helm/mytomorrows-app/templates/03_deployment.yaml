@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-mytomorrows-app
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-mytomorrows-app
+  strategy:
+    type: Recreate # quicker to propagate changes while WIP, set to RollingUpdate after
+    # type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-mytomorrows-app
+    spec:
+      terminationGracePeriodSeconds: {{ .Values.terminationGracePeriodSeconds }}
+      containers:
+        - name: mytomorrows-app
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          env:
+            - name: SECRET_KEY
+              value: "{{ .Values.app.secret_key }}"
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: db-password
+            - name: API_BASE_URL
+              value: "{{ .Values.app.api_base_url }}"
+            - name: LOG_LEVEL
+              value: "{{ .Values.app.log_level }}"
+            - name: MAX_CONNECTIONS
+              value: "{{ .Values.app.max_connections }}"
+          resources:
+            requests:
+              cpu: 1
+          ports:
+            - name: app-port
+              containerPort: {{ .Values.service.appPort }}
+          readinessProbe:
+            httpGet:
+              path: /
+              port: app-port
+            initialDelaySeconds: 3
+            periodSeconds: 5
+          livenessProbe:
+            httpGet:
+              path: /
+              port: app-port
+            initialDelaySeconds: 3
+            periodSeconds: 60
+            failureThreshold: 5

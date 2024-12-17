@@ -16,7 +16,7 @@ module "eks" {
   # Grant k8s API access permissions to IAM principals
   access_entries = {
     console-admin-access = {
-      principal_arn = "arn:aws:iam::172221322213:user/max"
+      principal_arn = data.aws_iam_user.admin.arn
       type          = "STANDARD"
       policy_associations = {
         ClusterAdmin = {
@@ -39,10 +39,3 @@ module "eks" {
   subnet_ids = module.vpc.private_subnets
 
 }
-
-# resource "aws_eks_access_entry" "my_eks_entry" {
-#   cluster_name      = "dev-cluster"
-#   principal_arn     = "arn:aws:iam::172221322213:user/max"
-#   type              = "STANDARD"
-#   user_name         = "arn:aws:iam::172221322213:user/max"
-# }
