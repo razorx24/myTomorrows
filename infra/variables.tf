@@ -31,3 +31,20 @@ variable "ecr_image_count" {
   type        = number
   description = "The maximum number of images that you want to retain"
 }
+
+variable "ecr_repository_name" {
+  type        = string
+  description = "The name of the ECR repo"
+}
+
+### EKS
+
+variable "eks_cluster_name" {
+  type        = string
+  description = "The name of the EKS cluster"
+}
+
+variable "eks_cluster_version" {
+  type        = string
+  description = "EKS Cluster version"
+}
