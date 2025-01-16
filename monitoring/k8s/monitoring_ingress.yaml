@@ -6,7 +6,7 @@ metadata:
 spec:
   scheme: internet-facing
   subnets:
-    ids: [subnet-0713f6a19be08e87c, subnet-024d736df20048098, subnet-084d157bbd1b81fcb]
+    ids: [subnet-0af8626142dcf52a8, subnet-05feb8700d57cbec4, subnet-00b3ef7592a9bdd7a]
 ---
 apiVersion: networking.k8s.io/v1
 kind: IngressClass
