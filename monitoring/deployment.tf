@@ -3,4 +3,5 @@ resource "helm_release" "prometheus-stack" {
   chart      = "kube-prometheus-stack"
   name       = "prometheus"
   namespace  = "monitoring"
+  create_namespace = true
 }

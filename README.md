@@ -15,12 +15,12 @@ Overview of directory structure, in steps-to-deploy order:
 ## Endpoints
 k8s Ingress resource is created in order to expose the application to the internet. Due to lack of a dedicated domain name it can be accessible via AWS ALB's cname.\
 Two application endpoints are exposed (only http listeners available):
-- http://k8s-default-testtfde-cad7bf73ca-1563891471.us-east-1.elb.amazonaws.com
-- http://k8s-default-testtfde-cad7bf73ca-1563891471.us-east-1.elb.amazonaws.com/config
+- TBD
+- TBD
 
 ## Observability 
 `kube-prometheus-stack` (Prometheus, Grafana) is deployed inside of the cluster to provide cluster-wide and application observability :
-- http://k8s-monitori-monitori-ea155b804d-1327423129.us-east-1.elb.amazonaws.com [ admin | prom-operator ] 
+- TBD
 
 ## Security
 - Application pods are schedued to internal subnets that have access to the Internet through NAT Gateway to allow package upgrades but can not be accessible from outside. Incoming traffic goes through the ALB deployed in public subnets.
